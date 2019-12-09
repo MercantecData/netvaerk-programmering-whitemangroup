@@ -71,7 +71,7 @@ namespace Projekt
             {
                 Console.Write(bonusString[i]);
             }
-
+            // Output = DABDAB?
 
 
 

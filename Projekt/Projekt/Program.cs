@@ -38,6 +38,41 @@ namespace Projekt
             Console.WriteLine(convertBack);
 
 
+            // OPGAVE BONUS
+            byte[] bonusBytes = { 68, 65, 66, 68, 65, 66, 100 }; // 100 for default check
+            string[] bonusString = new string[bonusBytes.Length];
+
+            for (int i = 0; i < bonusBytes.Length; i++)
+            {
+                switch (bonusBytes[i])
+                {
+                    case 65:
+                        bonusString[i] = "A";
+                        break;
+                    case 66:
+                        bonusString[i] = "B";
+                        break;
+                    case 67:
+                        bonusString[i] = "C";
+                        break;
+                    case 68:
+                        bonusString[i] = "D";
+                        break;
+                    case 69:
+                        bonusString[i] = "E";
+                        break;
+                    default:
+                        bonusString[i] = "?";
+                        break;
+                }
+            }
+
+            for (int i = 0; i < bonusString.Length; i++)
+            {
+                Console.Write(bonusString[i]);
+            }
+
+
 
 
             /*

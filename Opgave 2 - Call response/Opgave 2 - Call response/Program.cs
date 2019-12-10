@@ -21,10 +21,12 @@ namespace Opgave_2___Call_response
             string input = Console.ReadLine();
             if (input == "1")
             {
+                Console.Clear();
                 Client();
             }
             else if (input == "2")
             {
+                Console.Clear();
                 Server();
             }
             else

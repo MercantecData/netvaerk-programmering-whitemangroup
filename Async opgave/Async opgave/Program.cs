@@ -10,9 +10,10 @@ namespace Async_opgave
         static void Main(string[] args)
         {
             Startup();
+            Console.ReadLine();
         }
 
-        static void Startup()
+        private static void Startup()
         {
             Console.WriteLine("1. Client\n2. Server");
             string input = Console.ReadLine();
@@ -32,7 +33,7 @@ namespace Async_opgave
         }
 
 
-        static void Client ()
+        private static void Client()
         {
             TcpClient client = new TcpClient();
 
@@ -48,8 +49,7 @@ namespace Async_opgave
             ReceiveMessage(stream);
 
             // Loop keeps program running. Else it would stop after first message send
-            bool isConnected = true;
-            while (isConnected == true)
+            while (true)
             {
                 // Message encoding
                 Console.Write("Write your message here: ");
@@ -58,20 +58,12 @@ namespace Async_opgave
                 
                 // Message Write on stream = shows on server side
                 stream.Write(buffer, 0, buffer.Length);
-
-                buffer = new byte[256];
-
-                // Reads from stream
-                int numberOfBytesRead = stream.Read(buffer, 0, 256);
-                string receivedMessage = Encoding.UTF8.GetString(buffer, 0, numberOfBytesRead);
-
-                Console.WriteLine(receivedMessage);
+                Console.ReadKey();
             }
-
             client.Close();
         }
 
-        static async void Server()
+        private static async void Server()
         {
             // Connection
             int port = 13356;
@@ -92,8 +84,7 @@ namespace Async_opgave
             ReceiveMessage(stream);
 
             // Loop keeps program running. Else it would stop after first message received
-            bool isConnected = true;
-            while (isConnected == true)
+            while (true)
             {
                 // Message encoding
                 Console.Write("Write your message here: ");
@@ -107,14 +98,14 @@ namespace Async_opgave
             }
         }
 
-        public static async void ReceiveMessage(NetworkStream stream)
+        private static async void ReceiveMessage(NetworkStream stream)
         {
             byte[] buffer = new byte[256];
 
             int numberOfBytesRead = await stream.ReadAsync(buffer, 0, 256);
             string receivedMessage = Encoding.UTF8.GetString(buffer, 0, numberOfBytesRead);
 
-            Console.Write("\n" + receivedMessage);
+            Console.WriteLine("\n" + receivedMessage);
         }
         
     }
